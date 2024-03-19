@@ -17,7 +17,8 @@ class ResultsRepo():
         results_dict = {
             "_id": id,
             "name": results.name, 
-            "accuracy": results.accuracy,
+            "x": results.x,
+            "y": results.y,
             "scenary": {
                 "bullet_weight": results.scenary.bullet_weight,
                 "distance": results.scenary.distance,
@@ -36,7 +37,8 @@ class ResultsRepo():
     async def update(id:str, results: Results): 
         results_dict = await database.get_collection('results').find_one({"_id": id})
         results_dict["name"] = results.name
-        results_dict["accuracy"] = results.accuracy
+        results_dict["x"] = results.x
+        results_dict["y"] = results.y
         results_dict["scenary"] = {
             "bullet_weight": results.scenary.bullet_weight,
             "distance": results.scenary.distance,

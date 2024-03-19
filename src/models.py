@@ -17,7 +17,8 @@ class Scenary(BaseModel):
 class Results(BaseModel): 
     id: str = None
     name: str
-    accuracy: str
+    x: float 
+    y: float
     scenary: Scenary
 
 class Response(BaseModel): 
