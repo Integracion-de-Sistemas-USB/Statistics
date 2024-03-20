@@ -1,4 +1,4 @@
-from models import Results, Scenary
+from models import Results
 from config import database 
 import uuid
 
