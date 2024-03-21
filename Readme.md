@@ -22,3 +22,8 @@ uvicorn main:app
 ```
 4. On your browser open `localhost:8000/docs`
 
+## Run the tests
+5. Use pytest to run tests
+```bash
+pytest
+```
