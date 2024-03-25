@@ -21,6 +21,12 @@ class Results(BaseModel):
     y: float
     scenary: Scenary
 
+class UpdateResults(BaseModel): 
+    name: Optional[str] = None
+    x: Optional[float] = None 
+    y: Optional[float] = None
+    scenary: Optional[Scenary] = None
+
 class Response(BaseModel): 
     code: int 
     status: str 

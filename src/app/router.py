@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from repository import ResultsRepo
-from models import Results, Response
+from app.repository import ResultsRepo
+from app.models import Results, Response, UpdateResults
 
 router = APIRouter()
 
@@ -20,7 +20,7 @@ async def get_results_id(id: str):
     return Response(code=200, status="Ok", message="Success get data", result=results).model_dump(exclude_none=True)
 
 @router.put("/results/update/{id}")
-async def update_results(id: str, results: Results): 
+async def update_results(id: str, results: UpdateResults): 
     await ResultsRepo.update(id, results)
     return Response(code=200, status="Ok", message="Success update data").model_dump(exclude_none=True)
 

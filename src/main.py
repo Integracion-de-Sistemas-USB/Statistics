@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-
-import router
+from app.router import router
 
 app = FastAPI()
 
@@ -8,4 +7,4 @@ app = FastAPI()
 def read_root(): 
     return {"Hello" : "World"}
 
-app.include_router(router.router)
+app.include_router(router)
