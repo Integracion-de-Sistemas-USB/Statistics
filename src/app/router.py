@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from app.repository import ResultsRepo
 from app.models import Results, Response, UpdateResults
 
@@ -20,7 +20,7 @@ async def get_results_id(id: str):
     return Response(code=200, status="Ok", message="Success get data", result=results).model_dump(exclude_none=True)
 
 @router.put("/results/update/{id}")
-async def update_results(id: str, results: UpdateResults): 
+async def update_results(id: str, results: UpdateResults):
     await ResultsRepo.update(id, results)
     return Response(code=200, status="Ok", message="Success update data").model_dump(exclude_none=True)
 
@@ -28,3 +28,8 @@ async def update_results(id: str, results: UpdateResults):
 async def delete_results(id: str): 
     await ResultsRepo.delete(id)
     return Response(code=200, status="Ok", message="Success delete data").model_dump(exclude_none=True)
+
+@router.delete("/results/delete/")
+async def delete_all():
+    await ResultsRepo.delete_all()
+    return Response(code=200, status="Ok", message="Success delete all data").model_dump(exclude_none=True)

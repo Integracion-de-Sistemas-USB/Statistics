@@ -95,3 +95,27 @@ async def test_delete_id_result(client: AsyncClient):
         response.json()["result"]
     
     assert str(e.value) == "\'result\'"
+
+@pytest.mark.anyio
+async def test_retrieve_nonexistent_id(client: AsyncClient):
+    response = await client.get("/results/nonexistent_id")
+    assert response.status_code == 404
+    assert response.json()["code"] == 404
+    assert response.json()["status"] == "Not Found"
+    assert response.json()["message"] == "Data not found"
+
+@pytest.mark.anyio
+async def test_update_nonexistent_id(client: AsyncClient):
+    response = await client.put("/results/update/nonexistent_id", json={"name": "Updated Name"})
+    assert response.status_code == 404
+    assert response.json()["code"] == 404
+    assert response.json()["status"] == "Not Found"
+    assert response.json()["message"] == "Data not found"
+
+@pytest.mark.anyio
+async def test_delete_nonexistent_id(client: AsyncClient):
+    response = await client.delete("/results/delete/nonexistent_id")
+    assert response.status_code == 404
+    assert response.json()["code"] == 404
+    assert response.json()["status"] == "Not Found"
+    assert response.json()["message"] == "Data not found"

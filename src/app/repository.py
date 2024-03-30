@@ -1,5 +1,6 @@
 from app.models import Results, UpdateResults
 from app.config import database 
+from fastapi import HTTPException
 from fastapi.encoders import jsonable_encoder
 import uuid
 
@@ -36,18 +37,30 @@ class ResultsRepo():
             }
         }
         await database.get_collection('results').insert_one(results_dict)
+    
+    @staticmethod
+    async def retrieve_id(id: str):
+        result = await database.get_collection('results').find_one({"_id": id})
+        if (result is None): 
+            raise HTTPException(status_code=404, detail="No object with id: " + id)
+        return result
 
     @staticmethod
     async def update(id:str, results: UpdateResults): 
-        results_dict = await database.get_collection('results').find_one({"_id": id})
+        result = await database.get_collection('results').find_one({"_id": id})
+        if (result is None): 
+            raise HTTPException(status_code=404, detail="No object with id: " + id)
         update_item_encoded = jsonable_encoder(results)
-        
         await database.get_collection('results').update_one({"_id": id}, {"$set": update_item_encoded})
-
-    @staticmethod
-    async def retrieve_id(id: str):
-        return await database.get_collection('results').find_one({"_id": id})
     
     @staticmethod
     async def delete(id: str):
+        result = await database.get_collection('results').find_one({"_id": id})
+        if (result is None): 
+            raise HTTPException(status_code=404, detail="No object with id: " + id)
+        
         await database.get_collection('results').delete_one({"_id": id})
+    
+    @staticmethod
+    async def delete_all(): 
+        await database.get_collection('results').delete_many({})
