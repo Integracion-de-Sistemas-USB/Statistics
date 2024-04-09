@@ -95,3 +95,21 @@ async def test_delete_id_result(client: AsyncClient):
         response.json()["result"]
     
     assert str(e.value) == "\'result\'"
+
+@pytest.mark.anyio
+async def test_retrieve_id_not_found(client: AsyncClient):
+    response = await client.get("/results/non_existing_id")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "No object with id: non_existing_id"
+
+@pytest.mark.anyio
+async def test_delete_id_not_found(client: AsyncClient):
+    response = await client.delete("/results/delete/non_existing_id")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "No object with id: non_existing_id"
+
+@pytest.mark.anyio
+async def test_retrieve_id_not_found(client: AsyncClient):
+    response = await client.get("/results/non_existing_id")
+    assert response.status_code == 404
+    assert response.json()["detail"] == "No object with id: non_existing_id"
