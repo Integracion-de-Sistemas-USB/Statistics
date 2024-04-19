@@ -6,10 +6,7 @@ T = TypeVar('T')
 class Scenary(BaseModel): 
     bullet_weight: float
     distance: float
-    ammo: str 
-    temperature: float
-    altitude: float
-    humidity: float
+    ammo: str
     scenary: str
     stress_level: int
     caliber: float
@@ -17,14 +14,12 @@ class Scenary(BaseModel):
 class Results(BaseModel): 
     id: str = None
     name: str
-    x: float 
-    y: float
+    score: float
     scenary: Scenary
 
 class UpdateResults(BaseModel): 
     name: Optional[str] = None
-    x: Optional[float] = None 
-    y: Optional[float] = None
+    score: Optional[float] = None
     scenary: Optional[Scenary] = None
 
 class Response(BaseModel): 
