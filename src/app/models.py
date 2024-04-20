@@ -15,12 +15,12 @@ class Results(BaseModel):
     id: str = None
     code:str
     name: str
-    score: float
+    score: list[int]
     scenary: Scenary
 
 class UpdateResults(BaseModel): 
     name: Optional[str] = None
-    score: Optional[float] = None
+    score: Optional[int] = None
     scenary: Optional[Scenary] = None
 
 class Response(BaseModel): 
