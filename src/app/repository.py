@@ -21,7 +21,7 @@ class ResultsRepo():
 
         results_dict = {
             "_id": id,
-            "code_user":results.code,
+            "code":results.code,
             "name": results.name,
             "score": results.score,
             "scenary": {
