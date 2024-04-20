@@ -16,7 +16,7 @@ class ResultsRepo():
     @staticmethod
     async def insert(results: Results):
         id = results.id
-        if id == None: 
+        if id is None or id is "":
             id = str(uuid.uuid4())
 
         results_dict = {
