@@ -23,6 +23,7 @@ class ResultsRepo():
             "_id": id,
             "code_user":results.code,
             "name": results.name,
+            "score": results.score,
             "scenary": {
                 "bullet_weight": results.scenary.bullet_weight,
                 "distance": results.scenary.distance,
