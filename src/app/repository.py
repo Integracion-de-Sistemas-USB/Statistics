@@ -16,21 +16,18 @@ class ResultsRepo():
     @staticmethod
     async def insert(results: Results):
         id = results.id
-        if id == None: 
+        if id is None or id is "":
             id = str(uuid.uuid4())
 
         results_dict = {
             "_id": id,
-            "name": results.name, 
-            "x": results.x,
-            "y": results.y,
+            "code":results.code,
+            "name": results.name,
+            "score": results.score,
             "scenary": {
                 "bullet_weight": results.scenary.bullet_weight,
                 "distance": results.scenary.distance,
                 "ammo": results.scenary.ammo,
-                "temperature": results.scenary.temperature,
-                "altitude": results.scenary.altitude,
-                "humidity": results.scenary.humidity,
                 "scenary": results.scenary.scenary,
                 "stress_level": results.scenary.stress_level,
                 "caliber": results.scenary.caliber
