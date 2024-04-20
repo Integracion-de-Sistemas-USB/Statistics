@@ -13,6 +13,7 @@ class Scenary(BaseModel):
 
 class Results(BaseModel): 
     id: str = None
+    code:str
     name: str
     score: float
     scenary: Scenary

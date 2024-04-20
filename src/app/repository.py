@@ -21,16 +21,12 @@ class ResultsRepo():
 
         results_dict = {
             "_id": id,
-            "name": results.name, 
-            "x": results.x,
-            "y": results.y,
+            "code_user":results.code,
+            "name": results.name,
             "scenary": {
                 "bullet_weight": results.scenary.bullet_weight,
                 "distance": results.scenary.distance,
                 "ammo": results.scenary.ammo,
-                "temperature": results.scenary.temperature,
-                "altitude": results.scenary.altitude,
-                "humidity": results.scenary.humidity,
                 "scenary": results.scenary.scenary,
                 "stress_level": results.scenary.stress_level,
                 "caliber": results.scenary.caliber
