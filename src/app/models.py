@@ -8,12 +8,12 @@ class Scenary(BaseModel):
     distance: float
     ammo: str
     scenary: str
-    stress_level: int
+    stress_level: str
     caliber: float
 
 class Results(BaseModel): 
     id: str = None
-    code:str
+    code: str
     name: str
     score: list[int]
     scenary: Scenary
