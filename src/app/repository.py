@@ -24,6 +24,7 @@ class ResultsRepo():
             "code":results.code,
             "name": results.name,
             "score": results.score,
+            "gun":results.gun,
             "scenary": {
                 "bullet_weight": results.scenary.bullet_weight,
                 "distance": results.scenary.distance,

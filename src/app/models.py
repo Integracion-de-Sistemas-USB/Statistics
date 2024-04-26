@@ -16,6 +16,7 @@ class Results(BaseModel):
     code: str
     name: str
     score: list[int]
+    gun: str
     scenary: Scenary
 
 class UpdateResults(BaseModel): 
